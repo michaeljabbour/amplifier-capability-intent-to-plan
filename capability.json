@@ -135,6 +135,58 @@
     "docs/evaluations/2026-10-28/compiler-boundary/PROTOCOL.json",
     "docs/evaluations/2026-10-28/compiler-boundary/compiler-probe.json"
   ],
-  "evidence_summary": "This local candidate preserves the original source and evaluation assets. Packaging and native software checks are recorded separately from comparative usefulness. No outside-user outcome or renamed-method effectiveness claim is established.",
-  "publication_status": "Installation and evidence scopes are documented below."
+  "evidence_summary": "The portable method is checked and the optional parser/compiler retains its software suite. A separate four-case probe exposed two scheduling failures in that prototype; generated recipes require dependency inspection and the current host validator.",
+  "publication_status": "Installation and evidence scopes are documented below.",
+  "marketing": {
+    "headline": "Turn the request into work someone can follow.",
+    "lead": "A planning skill for complex requests. Separate the goal, people, inputs, working rules and timing, then connect them into a plan with explicit dependencies and acceptance checks.",
+    "benefits": [
+      {
+        "title": "Preserve what was actually asked",
+        "body": "Keep stated requirements, inferences and unanswered decisions separate."
+      },
+      {
+        "title": "Make handoffs concrete",
+        "body": "Give each unit an outcome, owner, input revision, output and completion evidence."
+      },
+      {
+        "title": "Catch problems before execution",
+        "body": "Review hidden dependencies, missing inputs, invented thresholds and work beyond the granted scope."
+      }
+    ],
+    "walkthrough": [
+      {
+        "title": "Decompose the request",
+        "detail": "Use five questions: why, who, what, how and when; label the basis for each answer."
+      },
+      {
+        "title": "Connect the work",
+        "detail": "Declare prerequisites and the artifacts that cross them. Parallelize only genuinely independent work."
+      },
+      {
+        "title": "Review the plan",
+        "detail": "Return ready, revise or blocked with the smallest correction and next authorized action."
+      }
+    ],
+    "use_when": [
+      "A request mixes goals, tools, roles and deadlines.",
+      "Several people or agents need to work from the same plan.",
+      "An executable-looking workflow needs a scope and dependency review."
+    ],
+    "not_for": [
+      "Automatic deployment authority or invented success metrics.",
+      "Unreviewed execution of the optional lexical compiler’s output."
+    ],
+    "quickstart_prompt": "Use Intent to Plan on this request: improve our fictional onboarding flow and prepare a release. Separate explicit requirements from assumptions, identify missing baseline evidence, order design before implementation and make the release authority visible. Produce a plan only.",
+    "output_preview": "Fictional plan: onboarding improvement\nWhy: remove a reported task breakdown\nEvidence: baseline and affected steps unresolved\nOrder: inspect → decide → implement → verify\nHandoff: accepted design and task checks cross to builder\nRelease: separate authorized action\nVerdict: revise until the missing input is resolved",
+    "proof_summary": "The portable method is checked and the optional parser/compiler retains its software suite. A separate four-case probe exposed two scheduling failures in that prototype; generated recipes require dependency inspection and the current host validator.",
+    "next_step": "Paste the original request and name the decisions that are already settled.",
+    "example_note": "Fictional worked example. It illustrates the intended output; it is not a measured result or a real customer story.",
+    "install_notes": [
+      "Requires Git and Python 3.11+ for the repository installer. The portable method itself can be read by a compatible agent without a service or provider account.",
+      "The destination is a skills-parent folder. Use the discovery path supported by your agent; ~/.agents/skills is an example, not a universal host setting.",
+      "Keep the complete installed folder, references and license together. Identical reinstall is safe; conflicts are refused. A deliberate --replace keeps a dated backup."
+    ]
+  },
+  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-intent-to-plan"
 }
