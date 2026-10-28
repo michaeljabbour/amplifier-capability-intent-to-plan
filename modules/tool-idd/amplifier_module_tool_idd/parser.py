@@ -127,8 +127,8 @@ class IDDParser:
             logger.warning("IDDParser: no provider available — returning fallback")
             return self._fallback_decomposition(prompt, reason="no provider available")
 
-        request = self._build_chat_request(prompt, available_agents)
         try:
+            request = self._build_chat_request(prompt, available_agents)
             response = await provider.complete(request)
             raw_content = response.content or ""
             # response.content may be a string or a list of content blocks
@@ -310,7 +310,7 @@ class IDDParser:
                 goal=prompt[:200],
                 success_criteria=["Task completed successfully"],
             ),
-            trigger=TriggerPrimitive(activation="user request"),
+            trigger=TriggerPrimitive(activation="user request", confirmation="human"),
             agents=[
                 AgentAssignment(
                     name="self",

@@ -16,3 +16,9 @@ build/
 # IDD spec working copies (keep the canonical spec tracked)
 amplifier-idd-spec2.docx
 amplifier-idd-spec3.docx
+
+# Capability build and local verification
+_site/
+.venv-capability/
+.capability-check/
+__pycache__/

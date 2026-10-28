@@ -1,0 +1,129 @@
+{
+  "id": "intent-to-plan",
+  "display_name": "Intent to Plan",
+  "kind": "skill",
+  "promise": "Turn a complex request into a plan you can test and hand over.",
+  "audience": "People and agents coordinating work whose goal, inputs, responsibilities, and timing can drift apart.",
+  "trigger": "Use for complex requests, multi-role workflows, reviewable specifications, or a handoff before execution.",
+  "skill_path": "skills/intent-to-plan",
+  "modes": [
+    {
+      "name": "Decompose",
+      "when": "The request mixes purpose, roles, evidence, norms, and timing.",
+      "output": "Five explicit primitives with source, assumptions, and unresolved questions."
+    },
+    {
+      "name": "Compose",
+      "when": "The components need an actionable dependency plan.",
+      "output": "A plan with inputs/outputs, dependencies, scope, authority, and acceptance evidence."
+    },
+    {
+      "name": "Review",
+      "when": "A plan is about to be executed or compiled.",
+      "output": "A defect list or a bounded ready judgment; execution is a separate action."
+    }
+  ],
+  "examples": [
+    {
+      "title": "A request becomes a reviewable plan",
+      "brief": "A fictional team says: “Fix the onboarding flow and ship it when ready.”",
+      "before": "Invent a drop-off target, parallelize dependent tasks, and interpret the sentence as deployment approval.",
+      "after": "Separate intended outcome from method; preserve the unknown baseline, declare design-to-build inputs, test acceptance, and retain release authority as an unresolved boundary.",
+      "why": "An executable-looking plan cannot manufacture evidence or approval.",
+      "fictional": true
+    }
+  ],
+  "boundaries": [
+    "The five-primitives grammar is a design aid, not a proof that every request has a uniquely correct decomposition.",
+    "Compilation and model confidence do not establish authority, correctness, or current recipe-schema compatibility.",
+    "Memory hooks, Amplifier runtime, and automated parsing remain optional."
+  ],
+  "install_commands": [
+    "python3 scripts/capability.py doctor",
+    "python3 scripts/capability.py install --dest ~/.agents/skills"
+  ],
+  "runtime_install_commands": [
+    "amplifier bundle add ./bundle.md"
+  ],
+  "verification": [
+    {
+      "name": "Parser/compiler/hooks regression suite",
+      "command": "python -m pytest tests -q",
+      "status": "passed",
+      "evidence": "278 tests. Repaired request-construction failure handling, human-gated zero-confidence fallback, consistent no-Core result shape, and repeated-agent sequencing. Generated recipe schema/live runner acceptance still requires current-host validation.",
+      "expected": "The stated scope passes; no broader result inferred."
+    },
+    {
+      "name": "Portable packaging and install",
+      "command": "python3 scripts/capability.py build; python3 scripts/capability.py check; python3 scripts/capability.py doctor; python3 scripts/capability.py install --dest <temporary-parent> (twice)",
+      "status": "passed",
+      "expected": "Byte-identical canonical ZIP and isolated idempotent install.",
+      "evidence": "All operations passed. No runtime activation or effectiveness measured."
+    },
+    {
+      "name": "Skill discovery metadata",
+      "command": "<yaml-enabled-python> /path/to/skill-creator/scripts/quick_validate.py skills/intent-to-plan",
+      "status": "passed",
+      "expected": "Valid required frontmatter, naming, and complete scaffold.",
+      "evidence": "Skill is valid. This is a structural check, not a behavioral benchmark."
+    }
+  ],
+  "sources": [
+    {
+      "repo": "amplifier-bundle-idd",
+      "commit": "60ee4db81926aab6670db63d4429a8e1c1309481",
+      "paths": [
+        "skills/idd-decomposition-test/SKILL.md",
+        "skills/idd-recipe-compilation/SKILL.md",
+        "skills/idd-five-primitives/SKILL.md",
+        "skills/idd-composition-rules/SKILL.md",
+        "skills/idd-review/SKILL.md",
+        "skills/idd-philosophy/SKILL.md",
+        "modules/"
+      ],
+      "license": "MIT License",
+      "role": "Primary history and engine retained; methods consolidated behind the canonical portable entry."
+    }
+  ],
+  "consolidation": [
+    {
+      "source": "skills/idd-decomposition-test/SKILL.md",
+      "destination": "skills/intent-to-plan/references/idd-decomposition-test/METHOD.md",
+      "action": "Preserved as a rich mode reference; native consumers updated to canonical entry."
+    },
+    {
+      "source": "skills/idd-recipe-compilation/SKILL.md",
+      "destination": "skills/intent-to-plan/references/idd-recipe-compilation/METHOD.md",
+      "action": "Preserved as a rich mode reference; native consumers updated to canonical entry."
+    },
+    {
+      "source": "skills/idd-five-primitives/SKILL.md",
+      "destination": "skills/intent-to-plan/references/idd-five-primitives/METHOD.md",
+      "action": "Preserved as a rich mode reference; native consumers updated to canonical entry."
+    },
+    {
+      "source": "skills/idd-composition-rules/SKILL.md",
+      "destination": "skills/intent-to-plan/references/idd-composition-rules/METHOD.md",
+      "action": "Preserved as a rich mode reference; native consumers updated to canonical entry."
+    },
+    {
+      "source": "skills/idd-review/SKILL.md",
+      "destination": "skills/intent-to-plan/references/idd-review/METHOD.md",
+      "action": "Preserved as a rich mode reference; native consumers updated to canonical entry."
+    },
+    {
+      "source": "skills/idd-philosophy/SKILL.md",
+      "destination": "skills/intent-to-plan/references/idd-philosophy/METHOD.md",
+      "action": "Preserved as a rich mode reference; native consumers updated to canonical entry."
+    }
+  ],
+  "docs": [
+    "docs/INSTALL.md",
+    "docs/MIGRATION.md",
+    "docs/VALIDATION.md",
+    "docs/NATIVE-README.md",
+    "docs/evaluations/2026-10-28/consolidation.json"
+  ],
+  "evidence_summary": "This local candidate preserves the original source and evaluation assets. Packaging and native software checks are recorded separately from comparative usefulness. No outside-user outcome or renamed-method effectiveness claim is established.",
+  "publication_status": "Local release candidate. Source repositories and public URLs have not been changed."
+}

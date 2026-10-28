@@ -165,8 +165,7 @@ class IDDCompiler:
         """Group agents into parallel execution groups.
 
         Agents whose instructions contain explicit parallel markers
-        (``parallel:``, ``concurrently``, ``at the same time``) or whose
-        names are identical are grouped together.  All other agents are
+        (``parallel:``, ``concurrently``, ``at the same time``) are grouped together.  All other agents are
         treated as sequential single-element groups.
 
         Parameters
@@ -194,10 +193,9 @@ class IDDCompiler:
         for i, agent in enumerate(agents):
             if current_group:
                 prev = current_group[-1]
-                # Same agent name or explicit parallel marker → same group
+                # Identity alone does not establish independence.
                 is_parallel = (
-                    agent.name == prev.name
-                    or _PARALLEL_PATTERN.search(agent.instruction) is not None
+                    _PARALLEL_PATTERN.search(agent.instruction) is not None
                     or _PARALLEL_PATTERN.search(prev.instruction) is not None
                 )
                 if is_parallel:

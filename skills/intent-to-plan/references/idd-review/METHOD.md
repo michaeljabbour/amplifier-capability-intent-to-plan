@@ -1,3 +1,5 @@
+> Preserved source method from `amplifier-bundle-idd` at `60ee4db81926aab6670db63d4429a8e1c1309481`. Original examples and runtime claims are historical; the canonical entry point defines current scope.
+
 ---
 name: idd-review
 description: >
@@ -11,7 +13,7 @@ metadata:
   category: idd
 ---
 
-> **Companion file:** See [references/anti-patterns.md](references/anti-patterns.md) for the catalog of 11 common IDD anti-patterns.
+> **Companion file:** See [references/anti-patterns.md](https://github.com/michaeljabbour/amplifier-bundle-idd/blob/60ee4db81926aab6670db63d4429a8e1c1309481/skills/idd-review/references/anti-patterns.md) for the catalog of 11 common IDD anti-patterns.
 
 # IDD Composition Review Checklist
 

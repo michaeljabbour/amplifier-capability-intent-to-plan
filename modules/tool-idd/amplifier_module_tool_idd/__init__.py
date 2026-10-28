@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import json
 import logging
+from dataclasses import dataclass
 from typing import Any
 
 from .compiler import IDDCompiler
@@ -429,15 +430,23 @@ def _build_plan_summary(decomposition: Any) -> str:
     return "\n".join(parts)
 
 
+@dataclass
+class _StandaloneToolResult:
+    """Preserve the result protocol when inspecting optional machinery offline."""
+    success: bool
+    output: str
+    error: dict[str, str] | None = None
+
+
 def _tool_result(success: bool, output: str) -> Any:
     """Build a ToolResult compatible with Amplifier's tool infrastructure.
 
     Returns a proper ``ToolResult`` when amplifier-core is available,
-    falling back to a plain dict for isolated testing.
+    falling back to an object with the same result attributes for isolated testing.
     """
     if ToolResult is not None:
         if success:
             return ToolResult(success=True, output=output)
         return ToolResult(success=False, output=output, error={"message": output})
     # Fallback for tests running without amplifier-core
-    return {"success": success, "output": output}
+    return _StandaloneToolResult(success, output, None if success else {"message": output})

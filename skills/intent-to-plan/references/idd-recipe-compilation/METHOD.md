@@ -1,3 +1,5 @@
+> Preserved source method from `amplifier-bundle-idd` at `60ee4db81926aab6670db63d4429a8e1c1309481`. Original examples and runtime claims are historical; the canonical entry point defines current scope.
+
 ---
 name: idd-recipe-compilation
 description: >

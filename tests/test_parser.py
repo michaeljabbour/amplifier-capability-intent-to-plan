@@ -936,3 +936,12 @@ class TestAsStrListNested:
         # ["deep"] is not itself a list inside the inner list, so str() is used
         assert "a" in result
         assert len(result) == 2  # "a" and "['deep']"
+
+
+@pytest.mark.asyncio
+async def test_request_build_failure_returns_untrusted_human_gated_draft():
+    parser = IDDParser()
+    with patch.object(parser, "_build_chat_request", side_effect=RuntimeError("missing host contract")):
+        result = await parser.parse("Delete the scratch data", _make_providers(), [])
+    assert result.confidence == 0.0
+    assert result.trigger.confirmation == "human"

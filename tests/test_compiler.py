@@ -180,8 +180,8 @@ class TestCompilerSequentialDeps:
 
 
 class TestCompilerParallelism:
-    def test_same_name_agents_grouped(self):
-        """Agents with the same name are grouped as parallel."""
+    def test_same_name_agents_remain_sequential_without_explicit_parallelism(self):
+        """Same performer identity must not erase a dependency."""
         agents = [
             AgentAssignment(name="explorer", role="r1", instruction="search area A"),
             AgentAssignment(name="explorer", role="r2", instruction="search area B"),
@@ -190,11 +190,9 @@ class TestCompilerParallelism:
         compiler = IDDCompiler()
         result = compiler.compile(_decomposition(agents=agents))
         steps = result["steps"]
-        # Two explorers should share the same depends_on (none, as they're first)
         assert "depends_on" not in steps[0]
-        assert "depends_on" not in steps[1]
-        # Builder depends on both explorers
-        assert len(steps[2].get("depends_on", [])) == 2
+        assert steps[1]["depends_on"] == [steps[0]["name"]]
+        assert steps[2]["depends_on"] == [steps[1]["name"]]
 
     def test_parallel_keyword_in_instruction(self):
         """Agents with 'parallel' in instruction are grouped together."""
@@ -211,12 +209,12 @@ class TestCompilerParallelism:
 
     def test_parallel_agents_share_depends_from_prior(self):
         """Parallel group members all depend on the prior group."""
-        # NOTE: avoid parallel-keyword in instructions here -- we rely on
-        # same-name grouping only so that setup stays in its own group.
+        # Only the second worker explicitly requests concurrency with the
+        # preceding worker, so setup remains a separate prerequisite.
         agents = [
             AgentAssignment(name="setup", role="r", instruction="initial setup"),
             AgentAssignment(name="worker", role="r", instruction="do task A"),
-            AgentAssignment(name="worker", role="r", instruction="do task B"),
+            AgentAssignment(name="worker", role="r", instruction="do task B concurrently with task A"),
         ]
         compiler = IDDCompiler()
         result = compiler.compile(_decomposition(agents=agents))
