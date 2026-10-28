@@ -2,6 +2,10 @@
 
 Recorded 2026-10-28. These are actual packaging and native software/source checks, not comparative usefulness evidence.
 
+## Additional compiler boundary probe
+
+Status: **known native limitation**. Four authored pure-function cases: two controls passed, while negated and descriptive “parallel” language incorrectly grouped dependent assignments. The baseline source hashes, exact cases and limits are retained in [Compiler limits](COMPILER-LIMITS.md). No candidate compiler source was changed. The earlier regression-suite result below covers its stated test set and does not establish semantic scheduling correctness or current-runner acceptance.
+
 ## Parser/compiler/hooks regression suite
 
 Status: **passed**.

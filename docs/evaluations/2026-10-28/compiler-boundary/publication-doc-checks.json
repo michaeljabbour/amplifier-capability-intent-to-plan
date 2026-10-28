@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-28",
+  "scope": "Publication disclosure only; canonical method and engine unchanged",
+  "base_commit": "95a3f54ad6bd504ad3347006cebf79437a0fa67b",
+  "checks": {
+    "build": "passed",
+    "check": "passed;39 local links and10 canonical files",
+    "doctor": "portable valid; no runtime verification",
+    "node --check site/capability/site.js": "passed",
+    "canonical_method_and_engine_byte_identity": "passed"
+  },
+  "source_hashes": {
+    "modules/tool-idd/amplifier_module_tool_idd/compiler.py": "f27ce371fd5c4fcb5b89c6cd129c9e84ad59c3122c971d3b24fdb54989169448",
+    "modules/tool-idd/amplifier_module_tool_idd/grammar.py": "7c8a0d407304fea59632ea25d28f123cb8603b3801b52b825bb503378a421ae7",
+    "skills/intent-to-plan/SKILL.md": "a02e94e7259199535b43033a8e6c1fb8199bed55ecd722ae511b15a359a3ce8e"
+  },
+  "effectiveness_claim": false
+}

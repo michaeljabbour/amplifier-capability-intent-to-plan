@@ -4,6 +4,10 @@ Turn a complex request into a plan you can test and hand over.
 
 People and agents coordinating work whose goal, inputs, responsibilities, and timing can drift apart. Use for complex requests, multi-role workflows, reviewable specifications, or a handoff before execution.
 
+## Optional compiler: known scheduling limit
+
+The method produces a reviewable plan. Its retained optional compiler is a lexical prototype: it can group dependent steps when “parallel” appears in a negation or a description of a bug. A dated four-case probe passed two controls and failed both dependency cases. Do not execute its output without inspecting the dependencies and validating it with the actual host's current recipe validator. [Exact cases and source hashes](docs/COMPILER-LIMITS.md) preserve this finding; the earlier 278-test suite does not establish scheduling correctness.
+
 ## Install the portable method
 
 ```sh

@@ -35,6 +35,7 @@
   ],
   "boundaries": [
     "The five-primitives grammar is a design aid, not a proof that every request has a uniquely correct decomposition.",
+    "The optional lexical compiler can group dependent steps when parallel appears in a negation or bug description: two controls passed and two dependency cases failed. Inspect dependencies and validate with the actual current host before execution.",
     "Compilation and model confidence do not establish authority, correctness, or current recipe-schema compatibility.",
     "Memory hooks, Amplifier runtime, and automated parsing remain optional."
   ],
@@ -46,6 +47,13 @@
     "amplifier bundle add ./bundle.md"
   ],
   "verification": [
+    {
+      "name": "Optional compiler boundary probe",
+      "command": "Actual grammar/compiler pure-function probe; exact retained protocol and inputs in docs/COMPILER-LIMITS.md",
+      "expected": "Dependent assignments remain sequential; explicitly independent pair may be grouped.",
+      "status": "known-limit",
+      "evidence": "Four authored cases: 2 passed and 2 failed. Negated/descriptive parallel words incorrectly group dependent assignments. No parser/model/runner executed and no compiler source changed; not a held-out or efficacy result."
+    },
     {
       "name": "Parser/compiler/hooks regression suite",
       "command": "python -m pytest tests -q",
@@ -122,7 +130,10 @@
     "docs/MIGRATION.md",
     "docs/VALIDATION.md",
     "docs/NATIVE-README.md",
-    "docs/evaluations/2026-10-28/consolidation.json"
+    "docs/evaluations/2026-10-28/consolidation.json",
+    "docs/COMPILER-LIMITS.md",
+    "docs/evaluations/2026-10-28/compiler-boundary/PROTOCOL.json",
+    "docs/evaluations/2026-10-28/compiler-boundary/compiler-probe.json"
   ],
   "evidence_summary": "This local candidate preserves the original source and evaluation assets. Packaging and native software checks are recorded separately from comparative usefulness. No outside-user outcome or renamed-method effectiveness claim is established.",
   "publication_status": "Local release candidate. Source repositories and public URLs have not been changed."

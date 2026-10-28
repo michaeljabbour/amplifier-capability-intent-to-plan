@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-28",
+  "kind": "bounded engineering source comparison; not a comparative model benchmark",
+  "authority": "Research only; no paid generation, publication, platform installation or personal state access.",
+  "candidate": "amplifier-skill-intent-to-plan",
+  "baseline_commit": "95a3f54ad6bd504ad3347006cebf79437a0fa67b",
+  "intervention": "None. Measure the existing lexical compiler boundary before proposing a change.",
+  "oracle": "Two dependency-bearing or explicitly negated assignments must remain sequential. A genuinely explicit parallel pair may share a group. Repeated names alone do not permit concurrency.",
+  "cases": [
+    {"id": "negated-parallel", "instructions": ["Migrate the schema. Do not run in parallel with the reader.", "Read the migrated schema after the migration completes."], "expected_group_sizes": [1, 1]},
+    {"id": "descriptive-term", "instructions": ["Inspect the parallel execution bug and write the finding file.", "Read the finding file and repair the bug."], "expected_group_sizes": [1, 1]},
+    {"id": "explicit-independent", "instructions": ["In parallel: review documentation in directory A.", "In parallel: review independent documentation in directory B."], "expected_group_sizes": [2]},
+    {"id": "same-name-sequential", "instructions": ["Write a manifest.", "Read that manifest and validate it."], "expected_group_sizes": [1, 1]}
+  ],
+  "sample_limit": "Four authored fixtures, exposed to this reviewer. They are not independent held-out tasks, human judgments, a full-language semantics suite or runtime acceptance.",
+  "decision_rule": "Retain source and result. Do not introduce a regex fix solely to fit these four cases. A later compiler change needs explicit dependency representation, a separately frozen holdout and current-host recipe validation.",
+  "budget": "One local pure-function probe; zero model/provider/tool execution calls. No candidate source mutations."
+}

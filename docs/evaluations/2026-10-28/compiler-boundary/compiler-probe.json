@@ -1,0 +1,76 @@
+{
+  "date": "2026-10-28",
+  "baseline_commit": "95a3f54ad6bd504ad3347006cebf79437a0fa67b",
+  "intervention": "none",
+  "source_hashes": {
+    "compiler.py": "f27ce371fd5c4fcb5b89c6cd129c9e84ad59c3122c971d3b24fdb54989169448",
+    "grammar.py": "7c8a0d407304fea59632ea25d28f123cb8603b3801b52b825bb503378a421ae7"
+  },
+  "protocol_sha256": "cc57187f5ea8a7d7202613a9cafbd864516354b7785aa3d2a21ddbbba5ddf319",
+  "cases": [
+    {
+      "id": "negated-parallel",
+      "instructions": [
+        "Migrate the schema. Do not run in parallel with the reader.",
+        "Read the migrated schema after the migration completes."
+      ],
+      "expected_group_sizes": [
+        1,
+        1
+      ],
+      "actual_group_sizes": [
+        2
+      ],
+      "passed": false
+    },
+    {
+      "id": "descriptive-term",
+      "instructions": [
+        "Inspect the parallel execution bug and write the finding file.",
+        "Read the finding file and repair the bug."
+      ],
+      "expected_group_sizes": [
+        1,
+        1
+      ],
+      "actual_group_sizes": [
+        2
+      ],
+      "passed": false
+    },
+    {
+      "id": "explicit-independent",
+      "instructions": [
+        "In parallel: review documentation in directory A.",
+        "In parallel: review independent documentation in directory B."
+      ],
+      "expected_group_sizes": [
+        2
+      ],
+      "actual_group_sizes": [
+        2
+      ],
+      "passed": true
+    },
+    {
+      "id": "same-name-sequential",
+      "instructions": [
+        "Write a manifest.",
+        "Read that manifest and validate it."
+      ],
+      "expected_group_sizes": [
+        1,
+        1
+      ],
+      "actual_group_sizes": [
+        1,
+        1
+      ],
+      "passed": true
+    }
+  ],
+  "passes": 2,
+  "denominator": 4,
+  "scope": "Actual pure-function compiler probe; no parser model, recipe runner, provider, paid generation or candidate source change.",
+  "interpretation": "Fixture failures establish a lexical scheduling limitation only. No portable-method or user-effectiveness score follows."
+}
