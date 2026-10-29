@@ -1,0 +1,10 @@
+One line lands. Fix the onboarding flow, and ship it when ready.
+Your agent pounces. Ten tasks, all at once.
+It invents a target nobody measured. It hears ship it as a yes.
+Intent to Plan starts by pulling the request apart.
+Five threads: why, who, what, how, when. Each marked said, inferred or open.
+Then it weaves the order. Inspect, decide, build, verify. Every handoff names what crosses.
+The verdict is revise. The baseline is missing, and the release still needs an owner.
+Its optional compiler is a prototype. Check the order before you run anything.
+On screen: Plan what was asked. Mark what you guessed.
+Intent to Plan. Turn a complex request into a plan you can test and hand over.

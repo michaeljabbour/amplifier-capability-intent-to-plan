@@ -2,6 +2,8 @@
 
 Turn the request into work someone can follow.
 
+Watch the [73-second film](https://michaeljabbour.github.io/amplifier-skill-intent-to-plan/#film): a one-line request, an agent that pounces, and a plan that marks what was said, what was guessed and what is still open. The example in it is fictional.
+
 A planning skill for complex requests. Separate the goal, people, inputs, working rules and timing, then connect them into a plan with explicit dependencies and acceptance checks.
 
 [Explore the site](https://michaeljabbour.github.io/amplifier-skill-intent-to-plan/) · [Read the method](skills/intent-to-plan/SKILL.md) · [Install guide](docs/INSTALL.md)

@@ -188,5 +188,12 @@
       "Keep the complete installed folder, references and license together. Identical reinstall is safe; conflicts are refused. A deliberate --replace keeps a dated backup."
     ]
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-intent-to-plan"
+  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-intent-to-plan",
+  "film": {
+    "file": "intent-to-plan-film",
+    "seconds": 73,
+    "heading": "Ship it when ready.",
+    "blurb": "In 73 seconds, Purl the cat pounces on a one-line request, invents a target nobody measured and hears ship it as a yes. Intent to Plan pulls the request into five threads (why, who, what, how, when), marks each said, inferred or open, weaves the work into order and gives a verdict: revise, because the baseline is missing and the release has no owner. Captions are on the player; a transcript is below.",
+    "note": "The request, the app and the plan are a fictional example. The optional compiler shown is a prototype; the film shows how the skill behaves and reports no results."
+  }
 }
