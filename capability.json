@@ -26,7 +26,7 @@
   "examples": [
     {
       "title": "A request becomes a reviewable plan",
-      "brief": "A fictional team says: “Fix the onboarding flow and ship it when ready.”",
+      "brief": "A fictional team says: \u201cFix the onboarding flow and ship it when ready.\u201d",
       "before": "Invent a drop-off target, parallelize dependent tasks, and interpret the sentence as deployment approval.",
       "after": "Separate intended outcome from method; preserve the unknown baseline, declare design-to-build inputs, test acceptance, and retain release authority as an unresolved boundary.",
       "why": "An executable-looking plan cannot manufacture evidence or approval.",
@@ -175,10 +175,10 @@
     ],
     "not_for": [
       "Automatic deployment authority or invented success metrics.",
-      "Unreviewed execution of the optional lexical compiler’s output."
+      "Unreviewed execution of the optional lexical compiler\u2019s output."
     ],
     "quickstart_prompt": "Use Intent to Plan on this request: improve our fictional onboarding flow and prepare a release. Separate explicit requirements from assumptions, identify missing baseline evidence, order design before implementation and make the release authority visible. Produce a plan only.",
-    "output_preview": "Fictional plan: onboarding improvement\nWhy: remove a reported task breakdown\nEvidence: baseline and affected steps unresolved\nOrder: inspect → decide → implement → verify\nHandoff: accepted design and task checks cross to builder\nRelease: separate authorized action\nVerdict: revise until the missing input is resolved",
+    "output_preview": "Fictional plan: onboarding improvement\nWhy: remove a reported task breakdown\nEvidence: baseline and affected steps unresolved\nOrder: inspect \u2192 decide \u2192 implement \u2192 verify\nHandoff: accepted design and task checks cross to builder\nRelease: separate authorized action\nVerdict: revise until the missing input is resolved",
     "proof_summary": "The portable method is checked and the optional parser/compiler retains its software suite. A separate four-case probe exposed two scheduling failures in that prototype; generated recipes require dependency inspection and the current host validator.",
     "next_step": "Paste the original request and name the decisions that are already settled.",
     "example_note": "Fictional worked example. It illustrates the intended output; it is not a measured result or a real customer story.",
@@ -188,12 +188,102 @@
       "Keep the complete installed folder, references and license together. Identical reinstall is safe; conflicts are refused. A deliberate --replace keeps a dated backup."
     ]
   },
-  "repository_url": "https://github.com/michaeljabbour/amplifier-skill-intent-to-plan",
+  "repository_url": "https://github.com/michaeljabbour/amplifier-capability-intent-to-plan",
+  "name": "amplifier-capability-intent-to-plan",
+  "legacy_names": [
+    "amplifier-skill-intent-to-plan",
+    "idd-philosophy",
+    "idd-review",
+    "intent-to-plan"
+  ],
+  "contract_version": "amplifier-capability/v1",
+  "version": "0.1.0",
+  "version_basis": "Existing release metadata",
+  "engine": "LLM",
+  "engine_components": {
+    "caller_method": "LLM"
+  },
+  "surfaces": [
+    "agent-skills",
+    "amplifier-bundle",
+    "python-library"
+  ],
+  "portable_method": {
+    "name": "intent-to-plan",
+    "path": "skills/intent-to-plan",
+    "include": [
+      "."
+    ],
+    "contract": "Agent Skills directory; caller applies the method; no independent execution loop is installed."
+  },
+  "interfaces": {
+    "portable": {
+      "input": "Caller task and explicitly authorized context",
+      "output": "Turn a complex request into a plan you can test and hand over.",
+      "failure": "Report insufficient evidence, unsupported context or host limitation; never turn discovery into an execution claim."
+    },
+    "native": {
+      "distribution": "amplifier-bundle-idd",
+      "entrypoints": {},
+      "docs": [
+        "docs/INSTALL.md",
+        "docs/MIGRATION.md",
+        "docs/VALIDATION.md",
+        "docs/NATIVE-README.md",
+        "docs/evaluations/2026-10-28/consolidation.json",
+        "docs/COMPILER-LIMITS.md",
+        "docs/evaluations/2026-10-28/compiler-boundary/PROTOCOL.json",
+        "docs/evaluations/2026-10-28/compiler-boundary/compiler-probe.json"
+      ],
+      "status": "Existing declared entrypoints preserved; runtime signatures, service access and installation tests remain separate evidence."
+    },
+    "host_adapters": {
+      "amplifier_bundle": "bundle.md",
+      "grants_autonomy": false
+    }
+  },
+  "permissions": {
+    "installation": {
+      "network": false,
+      "executes_capability_code": false,
+      "writes": [
+        "Selected discovery folders",
+        ".capability-state transaction backups"
+      ],
+      "grants_runtime_permissions": false
+    },
+    "runtime": {
+      "status": "Host/caller authorizes each operation; installation is not a tool allowlist or standing approval.",
+      "declared_boundaries": [
+        "The five-primitives grammar is a design aid, not a proof that every request has a uniquely correct decomposition.",
+        "The optional lexical compiler can group dependent steps when parallel appears in a negation or bug description: two controls passed and two dependency cases failed. Inspect dependencies and validate with the actual current host before execution.",
+        "Compilation and model confidence do not establish authority, correctness, or current recipe-schema compatibility.",
+        "Memory hooks, Amplifier runtime, and automated parsing remain optional."
+      ]
+    },
+    "secret_names": {
+      "discovery_requires": [],
+      "native_runtime_inventory": "See native documentation; no credentials are bundled or inferred."
+    }
+  },
+  "dataflow": {
+    "installation": "Read pinned tracked portable source and copy locally with SHA-256 receipts. No source text is transmitted.",
+    "method": "Caller supplies authorized context; existing promise and boundaries govern output.",
+    "native_runtime": "Provider/network/storage flows are owned by native interfaces and host authorization; these files do not enable them."
+  },
+  "source_policy": {
+    "revision": "Explicit full40-character Git commit required at installation; never infer latest.",
+    "repository_rename": "Public identity may change; skill folder, imports, entrypoints, tool IDs and schemas remain stable.",
+    "research": ".research/market remains local and ignored; AGENTS governs refresh."
+  },
   "film": {
     "file": "intent-to-plan-film",
     "seconds": 73,
     "heading": "Ship it when ready.",
     "blurb": "In 73 seconds, Purl the cat pounces on a one-line request, invents a target nobody measured and hears ship it as a yes. Intent to Plan pulls the request into five threads (why, who, what, how, when), marks each said, inferred or open, weaves the work into order and gives a verdict: revise, because the baseline is missing and the release has no owner. Captions are on the player; a transcript is below.",
     "note": "The request, the app and the plan are a fictional example. The optional compiler shown is a prototype; the film shows how the skill behaves and reports no results."
-  }
+  },
+  "repository_aliases": [
+    "https://github.com/michaeljabbour/amplifier-skill-intent-to-plan"
+  ]
 }

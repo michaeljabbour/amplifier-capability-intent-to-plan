@@ -22,3 +22,4 @@ _site/
 .venv-capability/
 .capability-check/
 __pycache__/
+.research/
