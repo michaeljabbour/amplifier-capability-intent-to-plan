@@ -35,3 +35,7 @@ Use [review](references/idd-review/METHOD.md) and the preserved anti-pattern ref
 ## Output
 
 Return the original intent, five-primitives table with basis, dependency plan, acceptance checks, assumptions and owner decisions, review verdict, and next authorized action. Include generated recipes only as inspected/validated drafts at their actual evidence level.
+
+## Optional coaching checkpoint
+
+Read [the local coaching guide](references/coaching-session.v1.md) only when the person asks for practice or optional session bookkeeping. Keep direct artifact production available; agree a small budget, preserve the baseline and stop on goal, user exit or no meaningful gain.
