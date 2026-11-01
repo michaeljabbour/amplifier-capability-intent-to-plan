@@ -2,11 +2,11 @@
 
 Turn the request into work someone can follow.
 
-Watch the [73-second film](https://michaeljabbour.github.io/amplifier-skill-intent-to-plan/#film): a one-line request, an agent that pounces, and a plan that marks what was said, what was guessed and what is still open. The example in it is fictional.
+Watch the [73-second film](https://michaeljabbour.github.io/amplifier-capability-intent-to-plan/#film): a one-line request, an agent that pounces, and a plan that marks what was said, what was guessed and what is still open. The example in it is fictional.
 
 A planning skill for complex requests. Separate the goal, people, inputs, working rules and timing, then connect them into a plan with explicit dependencies and acceptance checks.
 
-[Explore the site](https://michaeljabbour.github.io/amplifier-skill-intent-to-plan/) · [Read the method](skills/intent-to-plan/SKILL.md) · [Install guide](docs/INSTALL.md)
+[Explore the site](https://michaeljabbour.github.io/amplifier-capability-intent-to-plan/) · [Read the method](skills/intent-to-plan/SKILL.md) · [Install guide](docs/INSTALL.md)
 
 ## What you get
 
@@ -19,8 +19,8 @@ A planning skill for complex requests. Separate the goal, people, inputs, workin
 Requires Git and Python 3.11+. Run these commands from a terminal:
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-skill-intent-to-plan.git
-cd amplifier-skill-intent-to-plan
+git clone https://github.com/michaeljabbour/amplifier-capability-intent-to-plan.git
+cd amplifier-capability-intent-to-plan
 python3 scripts/capability.py doctor
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```

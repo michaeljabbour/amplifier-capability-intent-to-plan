@@ -5,8 +5,8 @@
 Requires Git and Python 3.11+. From a terminal:
 
 ```sh
-git clone https://github.com/michaeljabbour/amplifier-skill-intent-to-plan.git
-cd amplifier-skill-intent-to-plan
+git clone https://github.com/michaeljabbour/amplifier-capability-intent-to-plan.git
+cd amplifier-capability-intent-to-plan
 python3 scripts/capability.py doctor
 python3 scripts/capability.py install --dest ~/.agents/skills
 ```
