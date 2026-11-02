@@ -1,8 +1,8 @@
-"""IDD Compiler — Compiles a Decomposition into an executable YAML recipe.
+"""IDD Compiler — Compiles a Decomposition into a legacy YAML plan draft.
 
-Translates the five-primitive decomposition into the Amplifier recipe
-schema (v1.7.0) so the orchestrator can execute steps through the
-standard recipe runner or hand them off to agents.
+This low-level representation is for inspection, not current-host execution.
+It retains lexical scheduling limitations and has no verified recipe-runner
+adapter. Public tool callers must use the explicit draft-only readiness guard.
 """
 
 from __future__ import annotations
@@ -21,15 +21,16 @@ from .grammar import AgentAssignment, Decomposition
 
 
 class IDDCompiler:
-    """Compiles a :class:`Decomposition` into an executable recipe dict."""
+    """Compiles a :class:`Decomposition` into a legacy plan-draft dict."""
 
     # -- public API -----------------------------------------------------------
 
     def compile(self, decomposition: Decomposition) -> dict[str, Any]:
         """Convert a *decomposition* into a recipe dict.
 
-        The returned dict conforms to Amplifier recipe schema v1.7.0 and
-        can be serialised with :func:`yaml.dump` or executed directly.
+        The returned dict can be serialised with :func:`yaml.dump` for review.
+        It is not verified against the current recipe runner and must not be
+        executed directly. See the guarded tool's draft envelope and limits.
 
         Parameters
         ----------

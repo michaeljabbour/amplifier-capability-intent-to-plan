@@ -42,3 +42,9 @@ Six rich design procedures; optional parser/compiler/hooks; three native portabi
 
 - Surface the actual two-of-four scheduling probe in the README, site boundaries and validation docs; preserve exact fictional cases and source hashes. Negated/descriptive concurrency words can group dependent assignments.
 - Retain the compiler as a gated prototype. No compiler or canonical method bytes changed, no recipe was executed and no effectiveness result is claimed.
+# Unreleased review candidate
+
+- Clarify the low-level compiler's module, class and return-value documentation:
+  it produces a legacy plan draft, not directly executable current-host recipes.
+  Scheduling logic and the guarded public tool contract are unchanged; the
+  historical four-case scheduling probe and its two failures remain preserved.
