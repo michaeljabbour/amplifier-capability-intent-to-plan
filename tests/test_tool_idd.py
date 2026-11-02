@@ -170,13 +170,13 @@ class TestCompileToolExecute:
     async def test_no_prior_decomposition_returns_error(self):
         coord = FakeCoordinator()
         tool = IDDCompileTool(coord)
-        result = await tool.execute({})
+        result = await tool.execute({"mode": "draft"})
         assert result.success is False
         assert "No decomposition" in result.output
 
     @pytest.mark.asyncio
     @patch.object(IDDParser, "_build_chat_request", _patched_build_request)
-    async def test_after_decompose_returns_yaml(self):
+    async def test_after_decompose_returns_explicit_draft_envelope(self):
         coord = _coordinator_with_provider()
 
         # First decompose
@@ -185,11 +185,14 @@ class TestCompileToolExecute:
 
         # Then compile
         compile_tool = IDDCompileTool(coord)
-        result = await compile_tool.execute({})
+        result = await compile_tool.execute({"mode": "draft"})
         assert result.success is True
         assert isinstance(result.output, str)
-        # Should be valid YAML containing recipe keys
-        assert "name:" in result.output or "steps:" in result.output
+        parsed = json.loads(result.output)
+        assert parsed["schema"] == "idd-compile-draft/v1"
+        assert parsed["status"] == "draft"
+        assert parsed["execution_ready"] is False
+        assert "steps:" in parsed["recipe_yaml"]
 
 
 # ===================================================================

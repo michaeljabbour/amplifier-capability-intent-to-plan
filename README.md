@@ -55,11 +55,13 @@ Verdict: revise until the missing input is resolved
 
 ## What is checked
 
-The portable method is checked and the optional parser/compiler retains its software suite. A separate four-case probe exposed two scheduling failures in that prototype; generated recipes require dependency inspection and the current host validator. See [validation](docs/VALIDATION.md) for the exact checks and limits.
+Recorded portable checks and the historical parser/compiler suite have separate evidence scopes. This local 0.3.0 review candidate makes the native compile tool draft-only. Available offline checks and their limits are recorded with the candidate; no current-host recipe execution is established. See [validation](docs/VALIDATION.md) and the [draft-only upgrade guide](docs/releases/0.3.0-draft-tool-contract.md).
 
-## Optional compiler: known scheduling limit
+## Optional native compiler: inspection only
 
-The optional compiler is a lexical prototype. It can group dependent steps when “parallel” appears in a negation or a bug description. A four-case probe passed two controls and failed both dependency cases. Inspect dependencies and validate generated recipes with the actual current host before execution. [Exact cases and source hashes](docs/COMPILER-LIMITS.md).
+Default `idd_compile` and `idd.compile` calls fail in this candidate. Explicit `mode: draft` returns a versioned JSON envelope containing `execution_ready: false` and a legacy YAML plan for inspection. Do not send that plan to the recipes tool. A draft does not grant approval, and this change supplies no host adapter. [Review the breaking changes and caller migration](docs/releases/0.3.0-draft-tool-contract.md).
+
+The low-level compiler is unchanged from public main. It still uses lexical parallelism inference: a negated or descriptive “parallel” can group dependent assignments. The exposed four-case probe remains two passes and two failures. No scheduling repair or unsupported current-host compatibility claim is included. [Historical cases and source hashes](docs/COMPILER-LIMITS.md) remain preserved.
 
 ## Retained implementation and references
 

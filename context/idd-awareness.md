@@ -49,9 +49,12 @@ You have two IDD tools available. Use them when a task benefits from structured 
   context, behaviors, trigger, success criteria, and confidence score.
   The Grammar state is registered for hooks to observe.
 
-- **`idd_compile`** -- Call after `idd_decompose` to compile the decomposition into
-  executable Amplifier recipe YAML (schema v1.7.0). Uses the Grammar state from the
-  prior decompose call.
+- **`idd_compile`** -- Use explicit `mode: draft` only to inspect a legacy YAML
+  plan from the prior Grammar state or `decomposition_json`. Default calls are
+  blocked. The result is a versioned `idd-compile-draft/v1` JSON envelope with
+  `execution_ready: false`; draft-production success is not recipe readiness,
+  approval or execution permission. The inspected host parser rejects this
+  legacy format. Do not pass the embedded `recipe_yaml` to the recipes tool.
 
 ## When to Use IDD Decomposition
 
@@ -274,10 +277,14 @@ well-defined and should be repeatable:
 | `idd-audit` | Audit existing artifacts for IDD compliance |
 | `idd-teach` | Interactive IDD onboarding |
 
-**Compile custom recipes from decompositions:** After `idd_decompose`,
-call `idd_compile` to generate a recipe YAML for the specific task.
-This recipe can then be executed via the `recipes` tool, giving you
-checkpointing, resumability, and approval gates for free.
+**Inspect custom plan drafts:** After `idd_decompose`, explicitly request
+`idd_compile` with `mode: draft` only if a legacy plan draft is useful for review.
+Parse the JSON envelope and retain `execution_ready: false`. No execution-ready
+mode is supported. Neither a successful draft operation nor approval metadata in
+the draft establishes host acceptance or authorizes work. A separately reviewed
+versioned adapter must preserve roles, approvals, output references and fork/join
+meaning, followed by host parser and runtime checks, before generated plans can
+be treated as executable recipes. The current tool does not provide that adapter.
 
 ### Hooks — Automatic Grammar Awareness
 
@@ -343,7 +350,7 @@ Then load any skill when you need its knowledge:
 | `idd-philosophy` | Explaining IDD, justifying decomposition, teaching the approach |
 | `idd-composition-rules` | Composing primitives into plans, validating composition correctness |
 | `idd-decomposition-test` | Validating decomposition quality (3-step gate) after decomposing |
-| `idd-recipe-compilation` | Compiling decompositions to recipe YAML, understanding the mapping |
+| `idd-recipe-compilation` | Studying the preserved legacy recipe mapping; not proof of current-host execution |
 | `idd-review` | Auditing compositions, reviewing against checklists, diagnosing anti-patterns |
 
 Skills use progressive disclosure: you see the name and description (~100 tokens)
@@ -366,7 +373,8 @@ When LetsGo is composed alongside IDD, additional capabilities activate:
 For deep IDD work, delegate to specialist agents:
 
 - **idd:idd-composer** -- Creates IDD decompositions from natural language.
-  Fills all five primitives, applies composition rules, compiles to recipe YAML.
+  Fills all five primitives and applies composition rules. A legacy draft can be
+  inspected through explicit draft mode; current-host execution remains unverified.
   Use for: breaking down tasks, designing workflows, writing IDD recipes.
 
 - **idd:idd-reviewer** -- Audits IDD compositions for spec compliance.

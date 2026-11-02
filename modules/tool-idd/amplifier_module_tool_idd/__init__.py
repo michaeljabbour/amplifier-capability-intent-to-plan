@@ -9,8 +9,9 @@ Provides two tools that the LLM calls through the standard orchestrator loop:
     the ``idd.grammar_state`` capability so hooks can observe it.
 
 ``idd_compile``
-    Takes a decomposition (or the current Grammar state) and compiles it
-    into executable Amplifier recipe YAML (schema v1.7.0).
+    Produces a legacy YAML plan for inspection only when ``mode="draft"``
+    is explicitly requested. Default calls fail closed: current-host schema
+    compatibility and recipe execution are not supported by this tool.
 
 No custom orchestrator required -- the standard ``loop-streaming``
 orchestrator drives the session.  The LLM decides when to decompose
@@ -166,11 +167,13 @@ class IDDDecomposeTool:
 
 
 class IDDCompileTool:
-    """Compile an IDD decomposition into Amplifier recipe YAML.
+    """Inspect an IDD decomposition as a legacy YAML draft.
 
     Takes the current Grammar state (from a prior ``idd_decompose`` call)
-    or a decomposition dict passed directly, and produces executable
-    recipe YAML matching Amplifier's recipe schema v1.7.0.
+    or a decomposition dict passed directly. An explicit ``mode="draft"``
+    returns a versioned JSON envelope with ``execution_ready: false`` and
+    the legacy YAML. It is not accepted by the installed recipe parser.
+    No mode validates a recipe, grants approval or executes work.
     """
 
     def __init__(self, coordinator: Any) -> None:
@@ -184,9 +187,11 @@ class IDDCompileTool:
     @property
     def description(self) -> str:
         return (
-            "Compile an IDD decomposition into executable Amplifier recipe YAML. "
-            "Uses the Grammar state from a prior idd_decompose call. "
-            "Returns the compiled YAML string ready for the recipes tool."
+            "Inspect an IDD decomposition as a legacy YAML draft, using explicit "
+            "mode='draft' and the Grammar state or decomposition_json. "
+            "Returns a versioned JSON envelope with execution_ready=false. "
+            "The draft is incompatible with the installed recipe parser; do not "
+            "send it to the recipes tool. Default calls are blocked."
         )
 
     @property
@@ -194,6 +199,14 @@ class IDDCompileTool:
         return {
             "type": "object",
             "properties": {
+                "mode": {
+                    "type": "string",
+                    "enum": ["draft"],
+                    "description": (
+                        "Explicit inspection-only mode. No execution-ready mode "
+                        "is supported; the result never grants approval."
+                    ),
+                },
                 "decomposition_json": {
                     "type": "string",
                     "description": (
@@ -203,11 +216,35 @@ class IDDCompileTool:
                     ),
                 },
             },
-            "required": [],
+            "required": ["mode"],
+            "additionalProperties": False,
         }
 
     async def execute(self, input: dict[str, Any]) -> Any:
-        """Execute the compilation."""
+        """Return an explicitly requested draft; never assert host readiness."""
+        if not isinstance(input, dict):
+            return self._draft_result(False, "invalid_input", "Input must be an object.")
+        if "mode" not in input:
+            return self._draft_result(
+                False,
+                "blocked",
+                "Execution-ready compilation is unavailable. Explicitly request "
+                "mode='draft' for inspection only; a reviewed host adapter and "
+                "runtime validation are still required.",
+            )
+        if input["mode"] != "draft" or not isinstance(input["mode"], str):
+            return self._draft_result(
+                False, "invalid_input", "Only the string mode='draft' is supported."
+            )
+        if any(key not in {"mode", "decomposition_json"} for key in input):
+            return self._draft_result(
+                False, "invalid_input", "Only mode and decomposition_json are accepted."
+            )
+        if not isinstance(input.get("decomposition_json", ""), str):
+            return self._draft_result(
+                False, "invalid_input", "decomposition_json must be a JSON string."
+            )
+
         # Try to get decomposition from input or Grammar state
         decomposition = None
         decomposition_json = input.get("decomposition_json", "")
@@ -221,6 +258,9 @@ class IDDCompileTool:
                 )
             except Exception:
                 logger.debug("Could not parse decomposition_json", exc_info=True)
+                return self._draft_result(
+                    False, "invalid_input", "Could not parse decomposition_json."
+                )
 
         if decomposition is None:
             # Fall back to grammar state capability
@@ -229,9 +269,8 @@ class IDDCompileTool:
                 decomposition = grammar_state.decomposition
 
         if decomposition is None:
-            return _tool_result(
-                False,
-                "No decomposition available. Run idd_decompose first.",
+            return self._draft_result(
+                False, "missing_decomposition", "No decomposition available. Run idd_decompose first."
             )
 
         # Compile to YAML
@@ -239,9 +278,33 @@ class IDDCompileTool:
             yaml_str = self._compiler.compile_to_yaml(decomposition)
         except Exception:
             logger.exception("IDD compilation failed")
-            return _tool_result(False, "Failed to compile decomposition to YAML.")
+            return self._draft_result(
+                False, "compile_failed", "Failed to compile decomposition to a draft."
+            )
 
-        return _tool_result(True, yaml_str)
+        return self._draft_result(
+            True,
+            "draft",
+            "Inspection only. This legacy plan requires a reviewed adapter and "
+            "host/runtime validation before execution. It grants no approval.",
+            recipe_yaml=yaml_str,
+        )
+
+    @staticmethod
+    def _draft_result(
+        success: bool, status: str, message: str, *, recipe_yaml: str | None = None
+    ) -> Any:
+        """Keep operation success distinct from unsupported execution readiness."""
+        envelope: dict[str, Any] = {
+            "schema": "idd-compile-draft/v1",
+            "status": status,
+            "execution_ready": False,
+            "message": message,
+        }
+        if recipe_yaml is not None:
+            envelope["recipe_format"] = "idd-legacy-plan/v1"
+            envelope["recipe_yaml"] = recipe_yaml
+        return _tool_result(success, json.dumps(envelope, indent=2))
 
 
 # ---------------------------------------------------------------------------
@@ -270,8 +333,13 @@ async def mount(coordinator: Any, config: dict[str, Any] | None = None) -> None:
     async def _decompose_capability(input_text: str) -> Any:
         return await decompose_tool.execute({"input": input_text})
 
-    async def _compile_capability(decomposition_json: str = "") -> Any:
-        return await compile_tool.execute({"decomposition_json": decomposition_json})
+    async def _compile_capability(
+        decomposition_json: str = "", *, mode: str | None = None
+    ) -> Any:
+        request: dict[str, Any] = {"decomposition_json": decomposition_json}
+        if mode is not None:
+            request["mode"] = mode
+        return await compile_tool.execute(request)
 
     def _update_criterion(name: str, passed: bool, evidence: str = "") -> None:
         gs = coordinator.get_capability("idd.grammar_state")

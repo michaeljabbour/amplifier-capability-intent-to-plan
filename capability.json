@@ -35,7 +35,7 @@
   ],
   "boundaries": [
     "The five-primitives grammar is a design aid, not a proof that every request has a uniquely correct decomposition.",
-    "The optional lexical compiler can group dependent steps when parallel appears in a negation or bug description: two controls passed and two dependency cases failed. Inspect dependencies and validate with the actual current host before execution.",
+    "The native compile tool in this local candidate is draft-only: default calls fail and explicit mode='draft' returns a JSON envelope with execution_ready=false. The unchanged lexical compiler retains its two-of-four scheduling limitation; the legacy output is not accepted by the inspected current host.",
     "Compilation and model confidence do not establish authority, correctness, or current recipe-schema compatibility.",
     "Memory hooks, Amplifier runtime, and automated parsing remain optional."
   ],
@@ -48,32 +48,32 @@
   ],
   "verification": [
     {
-      "name": "Optional compiler boundary probe",
+      "name": "Unchanged lexical compiler boundary probe",
       "command": "Actual grammar/compiler pure-function probe; exact retained protocol and inputs in docs/COMPILER-LIMITS.md",
       "expected": "Dependent assignments remain sequential; explicitly independent pair may be grouped.",
       "status": "known-limit",
       "evidence": "Four authored cases: 2 passed and 2 failed. Negated/descriptive parallel words incorrectly group dependent assignments. No parser/model/runner executed and no compiler source changed; not a held-out or efficacy result."
     },
     {
-      "name": "Parser/compiler/hooks regression suite",
+      "name": "Historical parser/compiler/hooks regression suite",
       "command": "python -m pytest tests -q",
       "status": "passed",
-      "evidence": "278 tests. Repaired request-construction failure handling, human-gated zero-confidence fallback, consistent no-Core result shape, and repeated-agent sequencing. Generated recipe schema/live runner acceptance still requires current-host validation.",
+      "evidence": "Previously recorded, not rerun for this draft-only preparation. 278 tests. Repaired request-construction failure handling, human-gated zero-confidence fallback, consistent no-Core result shape, and repeated-agent sequencing. Generated recipe schema/live runner acceptance still requires current-host validation.",
       "expected": "The stated scope passes; no broader result inferred."
     },
     {
-      "name": "Portable packaging and install",
+      "name": "Historical portable packaging and install",
       "command": "python3 scripts/capability.py build; python3 scripts/capability.py check; python3 scripts/capability.py doctor; python3 scripts/capability.py install --dest <temporary-parent> (twice)",
       "status": "passed",
       "expected": "Byte-identical canonical ZIP and isolated idempotent install.",
-      "evidence": "All operations passed. No runtime activation or effectiveness measured."
+      "evidence": "Previously recorded; installation/discovery was not repeated for this draft-only preparation. All operations passed. No runtime activation or effectiveness measured."
     },
     {
-      "name": "Skill discovery metadata",
+      "name": "Historical skill discovery metadata",
       "command": "<yaml-enabled-python> /path/to/skill-creator/scripts/quick_validate.py skills/intent-to-plan",
       "status": "passed",
       "expected": "Valid required frontmatter, naming, and complete scaffold.",
-      "evidence": "Skill is valid. This is a structural check, not a behavioral benchmark."
+      "evidence": "Previously recorded; installation/discovery was not repeated for this draft-only preparation. Skill is valid. This is a structural check, not a behavioral benchmark."
     }
   ],
   "sources": [
@@ -133,9 +133,11 @@
     "docs/evaluations/2026-10-28/consolidation.json",
     "docs/COMPILER-LIMITS.md",
     "docs/evaluations/2026-10-28/compiler-boundary/PROTOCOL.json",
-    "docs/evaluations/2026-10-28/compiler-boundary/compiler-probe.json"
+    "docs/evaluations/2026-10-28/compiler-boundary/compiler-probe.json",
+    "docs/COMPILE-TOOL-READINESS.md",
+    "docs/releases/0.3.0-draft-tool-contract.md"
   ],
-  "evidence_summary": "The portable method is checked and the optional parser/compiler retains its software suite. A separate four-case probe exposed two scheduling failures in that prototype; generated recipes require dependency inspection and the current host validator.",
+  "evidence_summary": "The local native compile-tool candidate produces inspection-only drafts and preserves the existing planning and noncompile contracts. The compiler remains unchanged with its exposed 2/4 limitation. Host parser/runtime acceptance, full pytest rerun and usefulness outcomes remain unresolved.",
   "publication_status": "Installation and evidence scopes are documented below.",
   "marketing": {
     "headline": "Turn the request into work someone can follow.",
@@ -175,11 +177,11 @@
     ],
     "not_for": [
       "Automatic deployment authority or invented success metrics.",
-      "Unreviewed execution of the optional lexical compiler\u2019s output."
+      "Executing the optional compiler's legacy YAML drafts."
     ],
     "quickstart_prompt": "Use Intent to Plan on this request: improve our fictional onboarding flow and prepare a release. Separate explicit requirements from assumptions, identify missing baseline evidence, order design before implementation and make the release authority visible. Produce a plan only.",
     "output_preview": "Fictional plan: onboarding improvement\nWhy: remove a reported task breakdown\nEvidence: baseline and affected steps unresolved\nOrder: inspect \u2192 decide \u2192 implement \u2192 verify\nHandoff: accepted design and task checks cross to builder\nRelease: separate authorized action\nVerdict: revise until the missing input is resolved",
-    "proof_summary": "The portable method is checked and the optional parser/compiler retains its software suite. A separate four-case probe exposed two scheduling failures in that prototype; generated recipes require dependency inspection and the current host validator.",
+    "proof_summary": "The local native compile-tool candidate produces inspection-only drafts and preserves the existing planning and noncompile contracts. The compiler remains unchanged with its exposed 2/4 limitation. Host parser/runtime acceptance, full pytest rerun and usefulness outcomes remain unresolved.",
     "next_step": "Paste the original request and name the decisions that are already settled.",
     "example_note": "Fictional worked example. It illustrates the intended output; it is not a measured result or a real customer story.",
     "install_notes": [
@@ -197,8 +199,8 @@
     "intent-to-plan"
   ],
   "contract_version": "amplifier-capability/v1",
-  "version": "0.1.0",
-  "version_basis": "Existing project metadata; not a new published tag or package release; an exact Git pin selects source for the shared portable installer.",
+  "version": "0.3.0",
+  "version_basis": "Local 0.3.0 breaking draft-only tool review candidate based on current public main. No tag, package upload or public release is implied; use a separately reviewed exact Git pin.",
   "engine": "LLM",
   "engine_components": {
     "caller_method": "LLM"
@@ -233,9 +235,11 @@
         "docs/evaluations/2026-10-28/consolidation.json",
         "docs/COMPILER-LIMITS.md",
         "docs/evaluations/2026-10-28/compiler-boundary/PROTOCOL.json",
-        "docs/evaluations/2026-10-28/compiler-boundary/compiler-probe.json"
+        "docs/evaluations/2026-10-28/compiler-boundary/compiler-probe.json",
+        "docs/COMPILE-TOOL-READINESS.md",
+        "docs/releases/0.3.0-draft-tool-contract.md"
       ],
-      "status": "Existing declared entrypoints preserved; runtime signatures, service access and installation tests remain separate evidence."
+      "status": "Local breaking draft-only candidate: default compile calls fail; explicit draft mode returns versioned unready JSON. Decomposition and noncompile identities remain; no current-host parser/runtime acceptance is established."
     },
     "host_adapters": {
       "amplifier_bundle": "bundle.md",
@@ -258,7 +262,7 @@
       "status": "Host/caller authorizes each operation; installation is not a tool allowlist or standing approval.",
       "declared_boundaries": [
         "The five-primitives grammar is a design aid, not a proof that every request has a uniquely correct decomposition.",
-        "The optional lexical compiler can group dependent steps when parallel appears in a negation or bug description: two controls passed and two dependency cases failed. Inspect dependencies and validate with the actual current host before execution.",
+        "The native compile tool in this local candidate is draft-only: default calls fail and explicit mode='draft' returns a JSON envelope with execution_ready=false. The unchanged lexical compiler retains its two-of-four scheduling limitation; the legacy output is not accepted by the inspected current host.",
         "Compilation and model confidence do not establish authority, correctness, or current recipe-schema compatibility.",
         "Memory hooks, Amplifier runtime, and automated parsing remain optional."
       ]

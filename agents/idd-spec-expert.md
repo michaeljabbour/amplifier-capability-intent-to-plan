@@ -183,14 +183,15 @@ machine execution. This is where IDD lives.
 The Grammar layer:
 - Decomposes Layer 1 input into five primitives
 - Presents the decomposition for human confirmation
-- Compiles confirmed decompositions into executable recipes
+- Defines recipe mappings for confirmed decompositions; the current tool output
+  remains an inspection-only draft
 
 ### Layer 3: Machinery
 
 Agent execution, tool calls, LLM interactions, hook lifecycle. The runtime.
 
 The Machinery layer:
-- Executes recipes compiled from Layer 2
+- Executes only host-validated workflows authorized for the selected runtime
 - Reports progress back to Layer 2 (which reports to Layer 1)
 - Handles errors, retries, and agent spawning
 
@@ -240,7 +241,12 @@ legitimately be empty if defaults suffice).
 
 ## Compilation: IDD Markdown to YAML Recipe
 
-IDD compositions (Layer 2) compile to Amplifier YAML recipes (Layer 3).
+The mappings below describe the IDD design and legacy prototype format. They
+do not establish acceptance by a current recipe host. The current `idd_compile`
+tool blocks default calls; explicit `mode: draft` produces a versioned JSON
+envelope with `execution_ready: false`. Do not present that draft as executable
+or send it to the recipes tool. A reviewed adapter and parser/runtime validation
+must preserve the mapping's meaning before any execution-readiness claim.
 
 **Mapping rules:**
 
