@@ -1,6 +1,6 @@
 # Compile tool: inspection-only draft contract
 
-This local candidate corrects the `idd_compile` tool's former claim that its
+The 0.3.0 compile-tool contract corrects the `idd_compile` tool's former claim that its
 output was executable, matched recipe schema v1.7.0 and was ready for the recipes
 tool. The installed recipe parser rejects the legacy step fields. A wording or
 guard change does **not** repair that incompatibility or establish runtime use.
@@ -38,8 +38,10 @@ A successful **draft-production operation** returns JSON, never bare YAML:
 
 `success: true` means only that the explicitly requested draft was produced.
 It does not mean host acceptance, approval, authority or execution readiness.
-Do not send `recipe_yaml` to the recipes tool. Invalid explicit JSON fails rather
-than silently compiling a different decomposition from session state.
+Do not send `recipe_yaml` to the recipes tool. Nonempty malformed explicit JSON fails rather
+than silently compiling a different decomposition from session state. An omitted
+or default empty decomposition string intentionally selects the current session
+state in explicit draft mode; whitespace is not that sentinel.
 
 ## Compatibility and remaining work
 

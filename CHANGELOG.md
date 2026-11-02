@@ -1,13 +1,13 @@
 # Changelog
 
-## Unreleased 0.3.0 candidate: draft-only native compile tool
+## 2026-11-02 — 0.3.0 draft-only native compile source update
 
 - Block default `idd_compile` and `idd.compile` calls. Explicit `mode: draft` returns an inspection-only `idd-compile-draft/v1` JSON envelope with `execution_ready: false`, replacing the former successful raw-YAML result.
 - Require draft mode and reject extra properties, wrong input types and malformed nonempty decomposition JSON. An omitted/default empty decomposition string intentionally selects the current Grammar state.
 - Correct current tool, context and specialist-agent guidance. A draft is not a host-compatible recipe, approval or execution permission.
-- Align the root distribution, tool package, bundle and capability artifact at 0.3.0. Hook versions, imports, IDs, manifest schema and the portable planning method remain unchanged. This is a local review candidate, not a tag, package upload or public release.
+- Align the root distribution, tool package, bundle and capability artifact at 0.3.0. Hook versions, imports, IDs, manifest schema and the portable planning method remain unchanged. Published on Git main; no package upload, release tag or local runtime installation is implied.
 - Keep the published lexical compiler, grammar, parser, hooks, compiler tests and recipes unchanged. The exposed compiler probe remains 2/4 and the legacy recipe format remains incompatible with the inspected host. No unpublished scheduling change is included.
-- See [the breaking-contract review guide](docs/releases/0.3.0-draft-tool-contract.md) before updating a native caller. Noncompile behavior is separately checked; no full pytest/async rerun, model result or human-use benefit is implied.
+- See [the breaking-contract review guide](docs/releases/0.3.0-draft-tool-contract.md) before updating a native caller. Noncompile behavior is separately checked; the follow-up full offline suite passes 297 tests and 39 subtests. No model result or human-use benefit is implied.
 
 ## Unreleased — optional coaching checkpoint
 

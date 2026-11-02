@@ -35,7 +35,7 @@
   ],
   "boundaries": [
     "The five-primitives grammar is a design aid, not a proof that every request has a uniquely correct decomposition.",
-    "The native compile tool in this local candidate is draft-only: default calls fail and explicit mode='draft' returns a JSON envelope with execution_ready=false. The unchanged lexical compiler retains its two-of-four scheduling limitation; the legacy output is not accepted by the inspected current host.",
+    "The native compile tool in 0.3.0 is draft-only: default calls fail and explicit mode='draft' returns a JSON envelope with execution_ready=false. The unchanged lexical compiler retains its two-of-four scheduling limitation; the legacy output is not accepted by the inspected current host.",
     "Compilation and model confidence do not establish authority, correctness, or current recipe-schema compatibility.",
     "Memory hooks, Amplifier runtime, and automated parsing remain optional."
   ],
@@ -137,7 +137,7 @@
     "docs/COMPILE-TOOL-READINESS.md",
     "docs/releases/0.3.0-draft-tool-contract.md"
   ],
-  "evidence_summary": "The local native compile-tool candidate produces inspection-only drafts and preserves the existing planning and noncompile contracts. The compiler remains unchanged with its exposed 2/4 limitation. Host parser/runtime acceptance, full pytest rerun and usefulness outcomes remain unresolved.",
+  "evidence_summary": "The native compile tool produces inspection-only drafts and preserves the existing planning and noncompile contracts. The offline suite passes 297 tests and 39 subtests. The compiler retains its exposed 2/4 limitation; host parser/runtime acceptance and usefulness outcomes remain unresolved.",
   "publication_status": "Installation and evidence scopes are documented below.",
   "marketing": {
     "headline": "Turn the request into work someone can follow.",
@@ -181,7 +181,7 @@
     ],
     "quickstart_prompt": "Use Intent to Plan on this request: improve our fictional onboarding flow and prepare a release. Separate explicit requirements from assumptions, identify missing baseline evidence, order design before implementation and make the release authority visible. Produce a plan only.",
     "output_preview": "Fictional plan: onboarding improvement\nWhy: remove a reported task breakdown\nEvidence: baseline and affected steps unresolved\nOrder: inspect \u2192 decide \u2192 implement \u2192 verify\nHandoff: accepted design and task checks cross to builder\nRelease: separate authorized action\nVerdict: revise until the missing input is resolved",
-    "proof_summary": "The local native compile-tool candidate produces inspection-only drafts and preserves the existing planning and noncompile contracts. The compiler remains unchanged with its exposed 2/4 limitation. Host parser/runtime acceptance, full pytest rerun and usefulness outcomes remain unresolved.",
+    "proof_summary": "The native compile tool produces inspection-only drafts and preserves the existing planning and noncompile contracts. The offline suite passes 297 tests and 39 subtests. The compiler retains its exposed 2/4 limitation; host parser/runtime acceptance and usefulness outcomes remain unresolved.",
     "next_step": "Paste the original request and name the decisions that are already settled.",
     "example_note": "Fictional worked example. It illustrates the intended output; it is not a measured result or a real customer story.",
     "install_notes": [
@@ -200,7 +200,7 @@
   ],
   "contract_version": "amplifier-capability/v1",
   "version": "0.3.0",
-  "version_basis": "Local 0.3.0 breaking draft-only tool review candidate based on current public main. No tag, package upload or public release is implied; use a separately reviewed exact Git pin.",
+  "version_basis": "0.3.0 breaking draft-only tool source update published on Git main. No release tag, package upload or active-runtime installation is implied; use an exact Git pin.",
   "engine": "LLM",
   "engine_components": {
     "caller_method": "LLM"
@@ -239,7 +239,7 @@
         "docs/COMPILE-TOOL-READINESS.md",
         "docs/releases/0.3.0-draft-tool-contract.md"
       ],
-      "status": "Local breaking draft-only candidate: default compile calls fail; explicit draft mode returns versioned unready JSON. Decomposition and noncompile identities remain; no current-host parser/runtime acceptance is established."
+      "status": "Breaking draft-only source update: default compile calls fail; explicit draft mode returns versioned unready JSON. Decomposition and noncompile identities remain; no current-host parser/runtime acceptance is established."
     },
     "host_adapters": {
       "amplifier_bundle": "bundle.md",
@@ -262,7 +262,7 @@
       "status": "Host/caller authorizes each operation; installation is not a tool allowlist or standing approval.",
       "declared_boundaries": [
         "The five-primitives grammar is a design aid, not a proof that every request has a uniquely correct decomposition.",
-        "The native compile tool in this local candidate is draft-only: default calls fail and explicit mode='draft' returns a JSON envelope with execution_ready=false. The unchanged lexical compiler retains its two-of-four scheduling limitation; the legacy output is not accepted by the inspected current host.",
+        "The native compile tool in 0.3.0 is draft-only: default calls fail and explicit mode='draft' returns a JSON envelope with execution_ready=false. The unchanged lexical compiler retains its two-of-four scheduling limitation; the legacy output is not accepted by the inspected current host.",
         "Compilation and model confidence do not establish authority, correctness, or current recipe-schema compatibility.",
         "Memory hooks, Amplifier runtime, and automated parsing remain optional."
       ]
